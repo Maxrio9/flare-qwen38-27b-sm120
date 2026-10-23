@@ -14,6 +14,18 @@ Three replicates per case and arm, 2048-token output budget, natural EOS:
 | Reasoning | 37.3 | 99.8 | 116.9 | 173.0 | 181.3 |
 | Agent | 37.3 | 75.3 | 62.1 | 75.6 | 85.1 |
 
+Observed **min–max native decode rates (tok/s)** across the three runs per cell
+follow, rounded to two decimal places.
+These are sample ranges, not confidence intervals; the generated text and lengths
+differ across arms. The headline uses the medians above.
+
+| Case | Plain | MTP3 | MTP7 | BF16 DFlash2 | NVFP4 DFlash2 |
+|---|---:|---:|---:|---:|---:|
+| Chat | 37.31–37.33 | 71.83–76.33 | 63.73–65.95 | 81.75–86.11 | 85.81–89.88 |
+| Code | 37.29–37.31 | 84.74–92.57 | 78.48–100.14 | 149.43–157.41 | 134.86–179.18 |
+| Reasoning | 37.28–37.31 | 97.99–100.16 | 112.47–119.23 | 168.47–183.81 | 178.52–188.50 |
+| Agent | 37.27–37.30 | 72.20–80.86 | 62.04–72.11 | 70.23–76.19 | 84.24–85.35 |
+
 The [12 synthetic request bodies](../benchmarks/qwen38-c1-requests.json)
 (4 cases × 3 seeds) and [60 per-request measurement rows](../benchmarks/qwen38-c1-results.csv)
 are included. Each arm used the same bodies; generated outputs are not bundled.
@@ -71,9 +83,9 @@ the existing pinned environment and local copies of the exact checkpoints.
 Its exact frozen-base scheduler backport passed **220 scheduler tests** and built
 as a release native CLI. The recipe configuration/feedback/scratch CPU selection
 passed **37 tests, 2 skipped** in the existing preparation environment. Current
-combined-tree native C4 check completed **52/52 requests** (24 pressure requests +
-2 cold/warm probes in each of plain and fixed7). Both arms had 14 pressure-time
-prefix hits and cold/warm reuse of 0 → 4,880 cached tokens, using the earlier
+combined-tree native C4 check completed **52/52 requests total** across plain
+and fixed7: **per arm, 24 pressure requests + 2 cold/warm probes** (2 × 26). Both arms
+had 14 pressure-time prefix hits and cold/warm reuse of 0 → 4,880 cached tokens, using the earlier
 C4/64K/prefill1024 package. This checks the new backported runtime, not a fresh
 export or a new throughput comparison.
 
@@ -91,9 +103,9 @@ The public export example then completed a **fresh C4/64K/prefill1024 package**,
 including compilation, warm-up, capture, verified readback and final assembly.
 The first assembly attempt ran out of workspace disk space; a retry succeeded
 on a larger output filesystem. It retained about 42 GiB including its local
-export cache. This fresh package passed **52/52 native C4 requests** in plain
-and fixed7 arms (24 pressure requests + 2 cold/warm probes each), with 13/12
-pressure-time cache hits respectively and 0 → 4,880 cached tokens in both
+export cache. This fresh package passed **52/52 native C4 requests total** across
+plain and fixed7: **per arm, 24 pressure requests + 2 cold/warm probes** (2 × 26),
+with 13 and 12 pressure-time cache hits respectively, and 0 → 4,880 cached tokens in both
 post-drain probes. This is a runtime qualification, not a new speed comparison.
 
 Known gaps remain:

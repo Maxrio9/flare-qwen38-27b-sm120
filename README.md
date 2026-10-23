@@ -10,6 +10,10 @@ this is a qualified priority claim, not an exhaustive historical survey.
 
 ![Qwen3.8-27B DFlash2 results on RTX PRO 4500](docs/images/qwen38-dflash2-sm120-v5.png)
 
+Infographic generated with OpenAI imagegen; its figures come from the included
+measurements. The [caption-edit prompt](docs/images/qwen38-dflash2-sm120-v5-prompt.txt)
+is included.
+
 | Workload | Plain decode | NVFP4 DFlash2 | Decode gain |
 |---|---:|---:|---:|
 | Chat | 37.3 tok/s | 87.6 tok/s | 2.35× |
