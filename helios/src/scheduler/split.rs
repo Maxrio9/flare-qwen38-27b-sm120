@@ -502,7 +502,6 @@ impl RequestScheduler {
     }
 
     pub(super) fn split_candidates(&self, output: &mut Vec<Candidate>, values: &[LaneValue; REQUEST_LANES], age_price: f64) {
-        if !self.submissions.is_empty() { return; }
         if self.costs.packed_shapes().next().is_some() {
             self.packed_candidates(output, values, age_price);
             return;
