@@ -8,10 +8,10 @@ DFlash2 recipes, engine fixes and memory improvements from our local experiments
 To our knowledge, the first public Flare + SM120 + DFlash2 configuration for this model;
 this is a qualified priority claim, not an exhaustive historical survey.
 
-![Qwen3.8-27B DFlash2 results on RTX PRO 4500](docs/images/qwen38-dflash2-sm120-v8.png)
+![Qwen3.8-27B DFlash2 results on RTX PRO 4500](docs/images/qwen38-dflash2-sm120-v9.png)
 
 Infographic generated with OpenAI imagegen; its figures come from the included
-measurements. The [image-edit prompts](docs/images/qwen38-dflash2-sm120-v8-prompt.txt)
+measurements. The [image-edit prompts](docs/images/qwen38-dflash2-sm120-v9-prompt.txt)
 are included.
 
 | Workload | Plain decode | NVFP4 DFlash2 | Decode gain |
