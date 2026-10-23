@@ -1,12 +1,14 @@
 # Qwen3.8-27B + DFlash2 on Flare / SM120
 
-**Up to 4.86× decode throughput versus plain decode on one RTX PRO 4500 32GB.**
-An experimental, reproducible source distribution combining the Qwen3.8-27B
+**Up to 4.86× native decode rate over plain decode in the reasoning case.**
+One RTX PRO 4500 32GB, C1, three seeds/case, natural EOS; this is a ratio of
+per-arm medians with different generated outputs and lengths.
+An experimental source distribution combining the Qwen3.8-27B
 DFlash2 recipes, engine fixes and memory improvements from our local experiments.
 To our knowledge, the first public Flare + SM120 + DFlash2 configuration for this model;
 this is a qualified priority claim, not an exhaustive historical survey.
 
-![Qwen3.8-27B DFlash2 results on RTX PRO 4500](docs/images/qwen38-dflash2-sm120.png)
+![Qwen3.8-27B DFlash2 results on RTX PRO 4500](docs/images/qwen38-dflash2-sm120-v5.png)
 
 | Workload | Plain decode | NVFP4 DFlash2 | Decode gain |
 |---|---:|---:|---:|
@@ -18,14 +20,17 @@ this is a qualified priority claim, not an exhaustive historical survey.
 C1 native decode rates, median of three runs per case, natural termination.
 Different generated text and lengths across arms; these are decode-rate comparisons,
 not equal-work latency or quality-equivalence results. [Request fixtures and measurement rows](docs/sm120-results.md) are included.
+The [full comparison table](docs/sm120-results.md#c1-decode-results) also includes
+built-in fixed-depth MTP3 and MTP7 from the same recipe family.
 The infographic's memory, scheduler and 128K figures come from separate experiments.
 
 ## What is included
 
 - BF16 and calibrated NVFP4 **DFlash2** recipes, plus native MTP and ordinary decode.
-- The **FP8 KV PV-tail fix**, pinned in the public FlashInfer dependency: a masked
-  cache tail must not propagate stale NaNs into otherwise valid attention.
-- Complete draft state handling for speculative commit, branching and prefix reuse.
+- The **paged-attention unused-V-tail NaN fix**, pinned in the public FlashInfer
+  dependency: unused value-cache tail rows must not propagate NaNs into valid
+  decode attention. The defect was reproduced with both BF16 and FP8 KV.
+- Draft state handling for speculative commit, snapshot/restore and prefix reuse.
 - Pinned-host export readbacks and preserved export integrity checks.
 - Dense MLP and attention preparation-memory improvements.
 - The generic **feedback-window scheduler fix**: final prefill chunks remain visible
@@ -44,7 +49,8 @@ NVFP4 describes checkpoint weights, not every tensor or the KV cache.
 | BF16 comparison drafter | [z-lab/Qwen3.8-27B-DFlash2](https://huggingface.co/z-lab/Qwen3.8-27B-DFlash2) | `50307d4c4cde6860d4eee73e2547cd786fe8e8a4` |
 
 Model weights are downloaded from their publishers, not included in this repository.
-Their licenses and access conditions remain applicable. DSpark was researched but is
+All three linked checkpoint cards declare Apache-2.0; their licenses and access
+conditions remain applicable. DSpark was researched but is
 **not implemented** here.
 
 ## Build and run
@@ -53,6 +59,11 @@ Linux, Python 3.12, a recent Rust toolchain, CUDA toolkit with CUPTI, and a comp
 NVIDIA driver are required. The measured system used driver 615.78.08, PyTorch
 2.14.1+cu132 and an RTX PRO 4500 Blackwell (SM120), 32GB. RTX 5090 is also SM120,
 but its performance has not been measured here.
+
+The fresh export example and native runtime were qualified in the existing
+pinned preparation environment. An anonymous clone and locked dependency
+resolution were checked; a completely new environment installation followed by
+the exact `ignition run` quickstart below has **not** been tested end to end.
 
 Install the native prerequisites listed in [environment setup](docs/model-preparation.md#environment-setup),
 including CMake, Ninja, a C/C++ compiler, protoc, OpenSSL and liburing headers. Then:
@@ -117,6 +128,7 @@ C4/64K package**, including prefix reuse. Details and remaining gaps are in the
 
 This is an independent experimental distribution of [NVIDIA Flare](https://github.com/NVIDIA/flare-local-inference),
 not an NVIDIA release. It preserves the original Apache-2.0 license, NOTICE and history.
+This modified fork has its changes listed in Git history.
 Its frozen source base is `5f37bd1`, with the published experimental stack and a focused
 scheduler backport. Upstream was checked again on 2026-10-23 at `a773e68`; it now has
 its own dense-Qwen MTP support. This distribution is **not a rebase onto that main**.

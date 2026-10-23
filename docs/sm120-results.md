@@ -20,7 +20,8 @@ are included. Each arm used the same bodies; generated outputs are not bundled.
 
 Numbers are median native per-request decode tok/s, excluding prefill/first-token
 latency. All 60 requests completed without a runtime failure. MTP3/MTP7 mean fixed
-3/7 drafts (widths 4/8), adaptive off; DFlash2 offers 7 drafts at width 8.
+3/7 drafts (widths 4/8), adaptive off, using the checkpoint's built-in MTP head
+through the same dense recipe family; DFlash2 offers 7 drafts at width 8.
 Chat/code/agent: thinking off, temperature .7, top-p .8, top-k 20, presence 1.5.
 Reasoning: thinking on, temperature 1, top-p .95, top-k 20, presence 0.
 No reasoning-effort setting was requested. Different arms produce different text
@@ -63,6 +64,10 @@ The scheduler port deliberately scores higher-value stale feedback winners and
 drains the pipeline before executing them; this can change stale-key refresh
 timing. Grammar/host-stop and every lifecycle/vision combination have not been
 exhaustively regressed, despite the generic barrier invariants and CPU tests.
+Clean-environment installation and the one-line alias quickstart have not been
+validated end to end. The successful fresh export used the public source with
+the existing pinned environment and local copies of the exact checkpoints.
+
 Its exact frozen-base scheduler backport passed **220 scheduler tests** and built
 as a release native CLI. The recipe configuration/feedback/scratch CPU selection
 passed **37 tests, 2 skipped** in the existing preparation environment. Current
@@ -105,7 +110,8 @@ Known gaps remain:
   but 12 plain and 11 DFlash2 automatic semantic failures, including budget/literal
   checks, with 68 cases needing manual review. It is not a statistical quality gate.
 - Long context increases prefill latency; a 65K prompt took about 17.5 seconds
-  before generation in the earlier setup. Decode gains do not remove that cost.
+  before generation in the earlier **third-party all-NVFP4 target** setup, rather
+  than the official-target C1 table above. Decode gains do not remove that cost.
 - RTX5090 compatibility follows the intended SM120 target; this repository's
   measurements are on RTX PRO4500, not a measured RTX5090 result.
 
