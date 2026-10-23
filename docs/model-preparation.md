@@ -38,8 +38,8 @@ Unsigned rank staging is private to preparation and cannot load in Helios.
 Flare loads the package files without Python. Helios is a Rust library;
 `flare_heliopause` is a CPython extension imported by Ignition.
 
-Every recipe defaults to FP8 E4M3 KV storage, including learned draft-model
-caches. Qwen Flash retains BF16 selector keys; GLM and DeepSeek retain their
+Most recipes default to FP8 E4M3 KV storage. Dense Qwen DFlash2 retains
+BF16 draft KV while its target KV uses FP8. Qwen Flash retains BF16 selector keys; GLM and DeepSeek retain their
 packed latent formats, including scale metadata and any BF16 rotary fields.
 Recurrent state, compressor accumulators, and hidden activations retain their
 model-specific precision. Cache writers and attention readers use matching
@@ -67,7 +67,7 @@ The JPEG decoder builds its bundled libjpeg-turbo source. Preparation requires
 the CUDA toolkit, including `nvcc` and CUPTI; configure `[paths] cuda` when it
 is not supplied by the Python environment.
 
-The preparation dependency pins a Git revision of `local-inference-lab/flashinfer`
+This distribution pins a Git revision of `Maxrio9/flashinfer` containing the PV-tail fix
 in `pyproject.toml`; `uv.lock` records the same commit. To change it, update the
 revision, run `uv lock --upgrade-package flashinfer-python`, then sync the environment.
 For local FlashInfer development, install the sibling

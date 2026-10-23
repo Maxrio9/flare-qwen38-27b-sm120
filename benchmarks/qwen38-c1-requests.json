@@ -1,0 +1,290 @@
+[
+  {
+    "category": "chat",
+    "repeat": 0,
+    "body": {
+      "model": "Qwen3.8-27B",
+      "messages": [
+        {
+          "role": "user",
+          "content": "In at most 180 words, explain why a database timeout does not prove a transaction failed and give a safe retry protocol."
+        }
+      ],
+      "max_tokens": 2048,
+      "seed": 410,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "presence_penalty": 1.5,
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "return_token_ids": true,
+      "return_token_timestamps": true
+    }
+  },
+  {
+    "category": "code",
+    "repeat": 0,
+    "body": {
+      "model": "Qwen3.8-27B",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Return only one Python code block defining merge_sorted(*iterables), which lazily merges any number of sorted iterables. Include required imports. Do not include a demo or tests. Handle empty iterables and duplicate values."
+        }
+      ],
+      "max_tokens": 2048,
+      "seed": 410,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "presence_penalty": 1.5,
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "return_token_ids": true,
+      "return_token_timestamps": true
+    }
+  },
+  {
+    "category": "reasoning",
+    "repeat": 0,
+    "body": {
+      "model": "Qwen3.8-27B",
+      "messages": [
+        {
+          "role": "user",
+          "content": "A box contains 3 red and 2 blue balls. Two are drawn without replacement. What is the probability they have the same color? Derive the answer."
+        }
+      ],
+      "max_tokens": 2048,
+      "seed": 410,
+      "temperature": 1.0,
+      "top_p": 0.95,
+      "top_k": 20,
+      "presence_penalty": 0.0,
+      "chat_template_kwargs": {
+        "enable_thinking": true
+      },
+      "return_token_ids": true,
+      "return_token_timestamps": true
+    }
+  },
+  {
+    "category": "agent",
+    "repeat": 0,
+    "body": {
+      "model": "Qwen3.8-27B",
+      "messages": [
+        {
+          "role": "user",
+          "content": "A service returns duplicate invoices after network timeouts. Give exactly four concise numbered debugging/remediation steps, at most 180 words total. Include the invariant to test."
+        }
+      ],
+      "max_tokens": 2048,
+      "seed": 410,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "presence_penalty": 1.5,
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "return_token_ids": true,
+      "return_token_timestamps": true
+    }
+  },
+  {
+    "category": "chat",
+    "repeat": 1,
+    "body": {
+      "model": "Qwen3.8-27B",
+      "messages": [
+        {
+          "role": "user",
+          "content": "In at most 180 words, explain why a database timeout does not prove a transaction failed and give a safe retry protocol."
+        }
+      ],
+      "max_tokens": 2048,
+      "seed": 411,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "presence_penalty": 1.5,
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "return_token_ids": true,
+      "return_token_timestamps": true
+    }
+  },
+  {
+    "category": "code",
+    "repeat": 1,
+    "body": {
+      "model": "Qwen3.8-27B",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Return only one Python code block defining merge_sorted(*iterables), which lazily merges any number of sorted iterables. Include required imports. Do not include a demo or tests. Handle empty iterables and duplicate values."
+        }
+      ],
+      "max_tokens": 2048,
+      "seed": 411,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "presence_penalty": 1.5,
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "return_token_ids": true,
+      "return_token_timestamps": true
+    }
+  },
+  {
+    "category": "reasoning",
+    "repeat": 1,
+    "body": {
+      "model": "Qwen3.8-27B",
+      "messages": [
+        {
+          "role": "user",
+          "content": "A box contains 3 red and 2 blue balls. Two are drawn without replacement. What is the probability they have the same color? Derive the answer."
+        }
+      ],
+      "max_tokens": 2048,
+      "seed": 411,
+      "temperature": 1.0,
+      "top_p": 0.95,
+      "top_k": 20,
+      "presence_penalty": 0.0,
+      "chat_template_kwargs": {
+        "enable_thinking": true
+      },
+      "return_token_ids": true,
+      "return_token_timestamps": true
+    }
+  },
+  {
+    "category": "agent",
+    "repeat": 1,
+    "body": {
+      "model": "Qwen3.8-27B",
+      "messages": [
+        {
+          "role": "user",
+          "content": "A service returns duplicate invoices after network timeouts. Give exactly four concise numbered debugging/remediation steps, at most 180 words total. Include the invariant to test."
+        }
+      ],
+      "max_tokens": 2048,
+      "seed": 411,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "presence_penalty": 1.5,
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "return_token_ids": true,
+      "return_token_timestamps": true
+    }
+  },
+  {
+    "category": "chat",
+    "repeat": 2,
+    "body": {
+      "model": "Qwen3.8-27B",
+      "messages": [
+        {
+          "role": "user",
+          "content": "In at most 180 words, explain why a database timeout does not prove a transaction failed and give a safe retry protocol."
+        }
+      ],
+      "max_tokens": 2048,
+      "seed": 412,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "presence_penalty": 1.5,
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "return_token_ids": true,
+      "return_token_timestamps": true
+    }
+  },
+  {
+    "category": "code",
+    "repeat": 2,
+    "body": {
+      "model": "Qwen3.8-27B",
+      "messages": [
+        {
+          "role": "user",
+          "content": "Return only one Python code block defining merge_sorted(*iterables), which lazily merges any number of sorted iterables. Include required imports. Do not include a demo or tests. Handle empty iterables and duplicate values."
+        }
+      ],
+      "max_tokens": 2048,
+      "seed": 412,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "presence_penalty": 1.5,
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "return_token_ids": true,
+      "return_token_timestamps": true
+    }
+  },
+  {
+    "category": "reasoning",
+    "repeat": 2,
+    "body": {
+      "model": "Qwen3.8-27B",
+      "messages": [
+        {
+          "role": "user",
+          "content": "A box contains 3 red and 2 blue balls. Two are drawn without replacement. What is the probability they have the same color? Derive the answer."
+        }
+      ],
+      "max_tokens": 2048,
+      "seed": 412,
+      "temperature": 1.0,
+      "top_p": 0.95,
+      "top_k": 20,
+      "presence_penalty": 0.0,
+      "chat_template_kwargs": {
+        "enable_thinking": true
+      },
+      "return_token_ids": true,
+      "return_token_timestamps": true
+    }
+  },
+  {
+    "category": "agent",
+    "repeat": 2,
+    "body": {
+      "model": "Qwen3.8-27B",
+      "messages": [
+        {
+          "role": "user",
+          "content": "A service returns duplicate invoices after network timeouts. Give exactly four concise numbered debugging/remediation steps, at most 180 words total. Include the invariant to test."
+        }
+      ],
+      "max_tokens": 2048,
+      "seed": 412,
+      "temperature": 0.7,
+      "top_p": 0.8,
+      "top_k": 20,
+      "presence_penalty": 1.5,
+      "chat_template_kwargs": {
+        "enable_thinking": false
+      },
+      "return_token_ids": true,
+      "return_token_timestamps": true
+    }
+  }
+]
