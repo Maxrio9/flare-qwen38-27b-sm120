@@ -10,7 +10,7 @@ Three replicates per case and arm, 2048-token output budget, natural EOS:
 | Case | Plain | MTP3 | MTP7 | BF16 DFlash2 | NVFP4 DFlash2 |
 |---|---:|---:|---:|---:|---:|
 | Chat | 37.3 | 74.7 | 64.0 | 84.6 | 87.6 |
-| Code | 37.3 | 90.8 | 96.8 | 150.8 | 154.2 |
+| Short code | 37.3 | 90.8 | 96.8 | 150.8 | 154.2 |
 | Reasoning | 37.3 | 99.8 | 116.9 | 173.0 | 181.3 |
 | Agent | 37.3 | 75.3 | 62.1 | 75.6 | 85.1 |
 
@@ -22,9 +22,23 @@ differ across arms. The headline uses the medians above.
 | Case | Plain | MTP3 | MTP7 | BF16 DFlash2 | NVFP4 DFlash2 |
 |---|---:|---:|---:|---:|---:|
 | Chat | 37.31–37.33 | 71.83–76.33 | 63.73–65.95 | 81.75–86.11 | 85.81–89.88 |
-| Code | 37.29–37.31 | 84.74–92.57 | 78.48–100.14 | 149.43–157.41 | 134.86–179.18 |
+| Short code | 37.29–37.31 | 84.74–92.57 | 78.48–100.14 | 149.43–157.41 | 134.86–179.18 |
 | Reasoning | 37.28–37.31 | 97.99–100.16 | 112.47–119.23 | 168.47–183.81 | 178.52–188.50 |
 | Agent | 37.27–37.30 | 72.20–80.86 | 62.04–72.11 | 70.23–76.19 | 84.24–85.35 |
+
+Completion-token counts for seeds **410, 411, 412**, respectively:
+
+| Case | Plain | MTP3 | MTP7 | BF16 DFlash2 | NVFP4 DFlash2 |
+|---|---:|---:|---:|---:|---:|
+| Chat | 303, 269, 306 | 288, 336, 311 | 304, 278, 314 | 309, 278, 296 | 278, 297, 278 |
+| Short code | 63, 44, 44 | 60, 191, 219 | 67, 168, 196 | 71, 74, 177 | 67, 72, 60 |
+| Reasoning | 491, 367, 418 | 518, 352, 298 | 339, 519, 524 | 403, 349, 489 | 343, 496, 342 |
+| Agent | 275, 284, 241 | 316, 270, 277 | 284, 301, 306 | 302, 252, 314 | 340, 273, 288 |
+
+The **short-code** case produced only 44–63 tokens with plain decode and
+60–72 with NVFP4 DFlash2. The latter's three rates span 134.9–179.2 tok/s.
+The 4.13× ratio describes these short natural-EOS answers with high variance;
+it does **not** establish sustained long-code throughput or equal-output latency.
 
 The [12 synthetic request bodies](../benchmarks/qwen38-c1-requests.json)
 (4 cases × 3 seeds) and [60 per-request measurement rows](../benchmarks/qwen38-c1-results.csv)

@@ -8,18 +8,22 @@ DFlash2 recipes, engine fixes and memory improvements from our local experiments
 To our knowledge, the first public Flare + SM120 + DFlash2 configuration for this model;
 this is a qualified priority claim, not an exhaustive historical survey.
 
-![Qwen3.8-27B DFlash2 results on RTX PRO 4500](docs/images/qwen38-dflash2-sm120-v5.png)
+![Qwen3.8-27B DFlash2 results on RTX PRO 4500](docs/images/qwen38-dflash2-sm120-v6.png)
 
 Infographic generated with OpenAI imagegen; its figures come from the included
-measurements. The [caption-edit prompt](docs/images/qwen38-dflash2-sm120-v5-prompt.txt)
+measurements. The [caption-edit prompt](docs/images/qwen38-dflash2-sm120-v6-prompt.txt)
 is included.
 
 | Workload | Plain decode | NVFP4 DFlash2 | Decode gain |
 |---|---:|---:|---:|
 | Chat | 37.3 tok/s | 87.6 tok/s | 2.35× |
-| Code | 37.3 tok/s | 154.2 tok/s | 4.13× |
+| Short code | 37.3 tok/s | 154.2 tok/s | 4.13× |
 | Reasoning | 37.3 tok/s | 181.3 tok/s | 4.86× |
 | Agent | 37.3 tok/s | 85.1 tok/s | 2.28× |
+
+The short-code result covers **60–72 output tokens** with NVFP4 DFlash2
+(44–63 with plain decode). Its observed rates span **134.9–179.2 tok/s**;
+the 4.13× figure is a short-answer result, not a sustained long-code benchmark.
 
 C1 native decode rates, median of three runs per case, natural termination.
 Different generated text and lengths across arms; these are decode-rate comparisons,
