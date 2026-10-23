@@ -1,6 +1,6 @@
 # Qwen3.8-27B + DFlash2 on Flare / SM120
 
-**Up to 4.86× native decode rate over plain decode in the reasoning case.**
+**4.13× code decode and 2.35× prose over plain Flare.**
 One RTX PRO 4500 32GB, C1, three seeds/case, natural EOS; this is a ratio of
 per-arm medians with different generated outputs and lengths.
 An experimental source distribution combining the Qwen3.8-27B
@@ -8,16 +8,16 @@ DFlash2 recipes, engine fixes and memory improvements from our local experiments
 To our knowledge, the first public Flare + SM120 + DFlash2 configuration for this model;
 this is a qualified priority claim, not an exhaustive historical survey.
 
-![Qwen3.8-27B DFlash2 results on RTX PRO 4500](docs/images/qwen38-dflash2-sm120-v7.png)
+![Qwen3.8-27B DFlash2 results on RTX PRO 4500](docs/images/qwen38-dflash2-sm120-v8.png)
 
 Infographic generated with OpenAI imagegen; its figures come from the included
-measurements. The [image-edit prompts](docs/images/qwen38-dflash2-sm120-v7-prompt.txt)
+measurements. The [image-edit prompts](docs/images/qwen38-dflash2-sm120-v8-prompt.txt)
 are included.
 
 | Workload | Plain decode | NVFP4 DFlash2 | Decode gain |
 |---|---:|---:|---:|
-| Chat | 37.3 tok/s | 87.6 tok/s | 2.35× |
-| Short code | 37.3 tok/s | 154.2 tok/s | 4.13× |
+| Code decode | 37.3 tok/s | 154.2 tok/s | 4.13× |
+| Prose | 37.3 tok/s | 87.6 tok/s | 2.35× |
 | Reasoning | 37.3 tok/s | 181.3 tok/s | 4.86× |
 | Agent | 37.3 tok/s | 85.1 tok/s | 2.28× |
 

@@ -5,6 +5,10 @@
 One RTX PRO 4500 Blackwell 32GB, SM120, Linux, driver 615.78.08 open module,
 PyTorch 2.14.1+cu132. Official target `nvidia/Qwen3.8-27B-NVFP4@482ca0f`.
 All packages include the FlashInfer PV-tail fix over `03de0b66`.
+The infographic's **Prose** figure is the explanatory-writing case labelled
+**Chat** here and `chat` in the CSV. **Code decode** refers to the short-code
+case. These are display labels for the same unchanged measurements.
+
 Three replicates per case and arm, 2048-token output budget, natural EOS:
 
 | Case | Plain | MTP3 | MTP7 | BF16 DFlash2 | NVFP4 DFlash2 |
