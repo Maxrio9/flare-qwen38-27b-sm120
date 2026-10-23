@@ -69,7 +69,10 @@ cargo build --locked --release --manifest-path flare/Cargo.toml
 
 The first run downloads the exact checkpoints, compiles the graph catalog and exports
 a native package; later runs reuse it. Allow disk space for the environment, model
-cache, compiler cache and exported payloads. The default recipe is deliberately
+cache, compiler cache and exported payloads. Package assembly can temporarily
+hold multiple roughly 22 GiB copies: allow at least **60 GiB free on the export
+output filesystem**, in addition to the model/environment caches. Put `--output`
+on that volume when using the export example below. The default recipe is deliberately
 **C1 / 32K / prefill 512**. The BF16 comparison alias is `qwen3.8-27b-dflash2`.
 Sampling defaults follow the target recipe; supply the workload preset explicitly
 when reproducing the table.
@@ -104,6 +107,11 @@ payload files together. Do not use another person's signing credentials.
 See [validation and limitations](docs/sm120-results.md#validation-and-limits) before
 using the experimental memory changes. In particular, attention scratch at prefill
 4096 is not GPU-qualified; the supplied larger-capacity example uses 1024.
+
+The combined runtime built successfully and passed **220 scheduler tests**,
+**4 poisoned-tail CUDA cases**, and **52/52 native requests on a freshly exported
+C4/64K package**, including prefix reuse. Details and remaining gaps are in the
+[qualification report](docs/sm120-results.md#validation-and-limits).
 
 ## Relationship to upstream
 

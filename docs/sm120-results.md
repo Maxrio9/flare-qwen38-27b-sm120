@@ -82,6 +82,15 @@ packages; they do not assert exhaustive qualification of every new combination.
 The combined-tree poisoned-tail attention CUDA regression also passed **4/4**
 cases (BF16/FP8 × C1/C4, including inactive rows and boundary lengths).
 
+The public export example then completed a **fresh C4/64K/prefill1024 package**,
+including compilation, warm-up, capture, verified readback and final assembly.
+The first assembly attempt ran out of workspace disk space; a retry succeeded
+on a larger output filesystem. It retained about 42 GiB including its local
+export cache. This fresh package passed **52/52 native C4 requests** in plain
+and fixed7 arms (24 pressure requests + 2 cold/warm probes each), with 13/12
+pressure-time cache hits respectively and 0 → 4,880 cached tokens in both
+post-drain probes. This is a runtime qualification, not a new speed comparison.
+
 Known gaps remain:
 
 - Attention scratch at **prefill4096 is not GPU-qualified**. Use the example's
